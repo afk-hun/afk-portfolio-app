@@ -28,8 +28,12 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    landing: Landing;
+  };
+  globalsSelect: {
+    landing: LandingSelect<false> | LandingSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -214,6 +218,44 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing".
+ */
+export interface Landing {
+  id: string;
+  title: string;
+  'sub-title': string;
+  backgrounds?:
+    | {
+        mobile: string | Media;
+        tablet: string | Media;
+        desktop: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing_select".
+ */
+export interface LandingSelect<T extends boolean = true> {
+  title?: T;
+  'sub-title'?: T;
+  backgrounds?:
+    | T
+    | {
+        mobile?: T;
+        tablet?: T;
+        desktop?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
