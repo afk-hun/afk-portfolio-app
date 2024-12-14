@@ -2,6 +2,9 @@ import { GlobalConfig } from 'payload'
 
 export const Landing: GlobalConfig = {
   slug: 'landing',
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'title',
